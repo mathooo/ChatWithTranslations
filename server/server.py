@@ -51,12 +51,9 @@ if __name__ == "__main__":
             else:
                 # Data recieved from client, process it
                 try:
-                    #In Windows, sometimes when a TCP program closes abruptly,
-                    # a "Connection reset by peer" exception will be thrown
                     data = sock.recv(RECV_BUFFER)
                     if data:
-                        broadcast_data(sock, "\r" + '<' + str(sock.getpeername()) + '> ' + translate(data, 'en'))                
-                 
+                        broadcast_data(sock, "\r" + '<' + str(sock.getpeername()) + '> ' + translate(data, 'en') + "\n")                 
                 except:
                     broadcast_data(sock, "Client (%s, %s) is offline" % addr)
                     print "Client (%s, %s) is offline" % addr
